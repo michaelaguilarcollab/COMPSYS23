@@ -1,0 +1,70 @@
+\section{Methods}
+
+%The purpose of a burst-buffer is to improve computational performance for HPC proceses that rely on remote static IO storage \cite{Burst}\cite{liu}\cite{wang}.  Burst-buffer filesystems shield HPC processes from remote filesystem contenction and take advantage of data-locality for improved IOR interactions. A node-local burst buffer filesystem is designed to provide fast intermediate storage using storage on individual compute nodes.  A node-local burst-buffer uses the reources on compute nodes, whether it be memory in the form of RAMDISKs or local disk storage.  We decided to design a node-local burst-buffer filesystem for our production HPC use.
+
+\subsection{Implementation Decisions Made on our BeeOND Usage}
+
+We have started design work to provide HPC users with their own private BeeOND filesystems that are isolated from a common shared parallel filesystem.  For production HPC use, we wanted to implement composable and ephemeral filesystems that were made up of Workload Manager allocated compute node storage.  We made the decision that we wanted the data on the filesystems to last only as long as an individual user had use of a set of compute nodes.  Once a user job allocation was completed, the storage would be cleared out for new job allocations using the same nodes.  The advantage of clearing the node-local storage was that it better secured data that should not be shared and it would allow the nodes to quickly attach to new storage configurations.  Further, we decided that we wanted to implement a parallel file storage solution where every allocated compute node would both contribute to the storage and be a client to a private storage solution.  Thus, we designed our BeeOND filesystem around a node-local parallel filesystem architecture.  Another aspect of our design was the fact that we wanted our BeeOND filesystem to attach to RDMA for lower latency and better file transfer performance.  Finally, we wanted our BeeOND filesystem to be available to users running both batch jobs and interactive jobs.  
+
+Our on-site production HPC systems use the well-supported and common Slurm Workload Manager for a compute node allocation scheduler. Integration with the Slurm Workload Manager provided our BeeOND filesystem design with several convenient contributions for composing and managing private BeeOND filesystems.  For instance, Slurm Prolog and Epilog scripts are designed to run in parallel. We wanted the start-up and tear-down of the BeeOND filesystem to be insignifcant regardless of the scale of node allocation quantity. By careful use of Slurm Prolog and Epilog, we were able to create parallel component instances that were assembled into complete stable private BeeOND filesystems in under 3 seconds and disassembled and erased in under 6 seconds, regardless of the scale of the compute node allocation.  
+
+We wanted creation of private user BeeOND filesystems  to become an automatic part of the Slurm Workload Manager allocation. We found that the normal implementation of BeeOND would not fit our needs.  Under the normal BeeOND filesystem operations, a user would need to manually start the BeeOND filesystem.  In our production implementation we deemed that process to be unacceptable for ease of use and convenience.  However, close integration of the BeeOND components into a prescribed set of serialized start-up events would make creation and deletion of the filesystems an automatic feature of Slurm allocation and deallocation. 
+
+Integration with Slurm provided us with another positive feature for private filesystem management.  Slurm contains error and fault-tolerance infrastructure so that we would be able to handle unexpected filesystem issues.  Slurm gracefully provides error handling and logging.  In the event that the private filesystem failed to be properly started due to a hardware-related issue, the Slurm Workload Manager would be notified, logs detailing the issue would be generated, and the compute nodes would be drained for further inspection.
+
+\subsection{Integration of the BeeOND filesystem with Slurm}
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{images/cluster_layout.png}}
+  \caption{Planned Burst-Buffer Architecture}
+  \label{fig:cluster_layout}
+\end{figure}
+
+Our production private BeeOND filesystem  architecture was completed as shown in figure \ref{fig:cluster_layout}.  Slurm aided us in providing data locality to allocated job runs with Slurm partition information on our filesystem topology and the fact that Slurm has a built-in affinity for contiguous node allocation. 
+
+Slurm provides useful run-time variable information that is passed through the Slurm function \textit {slurmstepd}.  In our implementation, we wanted to provide HPC users with the ability to toggle on-and-off usage of the BeeOND filesystem.  This was designed into our Slurm Prolog script with a Slurm variable using the Slurm 'Constraint' feature.  In our Slurm Prolog script, the batch variable \textit{SLURM\_JOB\_CONSTRAINTS} was checked for the value \textit{beeond}. If the constraint \textit{beeond} value was set, a log message was passed to standard node logging to reflect that a private BeeOND filesystem was user requested and was being used. 
+
+We wanted each node in the BeeOND filesystem to know the role it had in the collective parallel filesystem.  Notification of the individual compute nodes was accomplished with the Slurm allocation variable \textit {SLURM\_NODELIST}. Passing \textit {SLURM\_NODELIST} inside Slurm Prolog with \textit{hostlist} allowed our Prolog script parser to determine the individual filesystem roles of the compute node in the node-local BeeOND filesystem. In our implementation, the \textit {SLURM\_NODELIST} variable was copied to an internal variable in each parallel Slurm Prolog script.  Once the internal variable was loaded with the variable value of Slurm allocated nodes, \textit {hostlist} was used to deconstuct the variable into a parsable compute node list.  Next, the hostname of the compute node was checked against the compute node list.  Using pre-determined architectural decisions, roles were assigned to each compute node in the Slurm allocation and services were started to create the BeeOND filsystem.
+
+\subsection{Customized BeeOND Filesystem Management with Parameter Passing}
+
+As part of the design of our BeeOND filesystem, we separated out the BeeOND filesystem management into separate start and stop scripts that were called by the Slurm Prolog and Epilog scripts.  The advantage of separate  management scripts was that we found that we could create more versatility in our filesystem architecture in future deployments on other HPC systems.  Also, we like the fact that we would have modularity in our start and stop functions to help us with software debugging.  
+
+We wanted our BeeOND filesystem storage to be optimized for many different HPC architectures and different quantities of metadata and storage servers.  Through careful analysis of the pre-packaged BeeOND shell scripts \textit{beeond start} and the \textit{beeond stop} scripts, we discovered that the key pieces of the pre-packaged BeeOND start-up script consisted of initialization and stoppage of just a few filesystem component services.  With the knowledge that we gained from our script study, we were able to write our own custom BeeOND filesystem management software that fulfilled our needs for automatic filesystem composition and decomposition.  Further, our custom start and stop scripts provided us complete versatility in quantity of MDT and OST services and node placement.  
+
+With our new custom scripts, in our BeeOND implementation, a Mangement server (Mgmt) component was the first service to run.  Mgmt calls were completed with a \textit {Mgmtd} storage directory, log file info, PID file, connection port, and as a daemon.  We chose the lowest node in each \textit {SLURM\_NODELIST} to be the Mgmtd server.
+
+The second BeeOND filesystem component in our BeeOND filesystem  was the storage server.  Every BeeOND filesystem consists of even striping of data across a user-defined quantity of OSTs.  For our first BeeOND implementattion, we decided to make every node in our allocation a single OST on a local OSS server.  Each storage server call requires a Storage Store directory, log file information, a PID file, the Mgmtd connection port, the name of the Mgmtd server, and as a daemon. 
+
+Again, the lowest entry in the \textit{SLURM\_NODELIST} became the default Metadata sever for our usage.  We did implement inherent capabilities into our custom scripting to allow us to alter the number of Metadata servers and placement of the servers, if we would like to modify those options, in the future.  Provided in our Metadata server start-ups are the name of the Mgmtd server, a Meta Store directory, log file information, a connection port, and daemonization.
+
+Each node was a client of the node-local BeeOND parallel filesystem.  BeeOND implements the mount with the use of a \textit{helperd} service.  Provided to \textit{helperd} was the name of the Mgmtd server and the connection port.  Once the \textit {helperd} service was started, a \textit{beeond\_mount} command was called and the private BeeOND filesystem was mounted to /mnt/beeond.  
+ 
+The final architectural layout of the node-local BeeOND filesystem is shown in figure \ref{fig:Node_local_storage_layout}.  The lowest node in the allocation became the Mgmt server, the Metadata server, an OST, and a client.  The other nodes in the Slurm allocation became both OST servers and clients.
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{images/Node_local_storage_layout.png}}
+  \caption{Node Local Burst Buffer Architecture}
+  \label{fig:Node_local_storage_layout}
+\end{figure}
+
+%\textbf{\textit{SLURM\_JOB\_CONSTRAINTS}} 
+
+Once an HPC allocation was completed, the BeeOND filesystem process components were matched to each node-local storage mount using the same methods that were used in the Slurm Prolog scripts. After node identification, as part of the Slurm Epilog script, parameters were passed to an individual BeeOND stop script on every node in the private BeeOND filesystem.  A kill signal was sent to each compute node with a fuser command.  A polling check insured that the processes were stopped before an XFS reformat to the node-local file storage. After any BeeOND processes were stopped, the back-end XFS storage was reformatted and remounted for use in another potential Slurm allocation.
+
+\subsection{Production HPC System Installation}
+
+%Our first implementation of the new node-local BeeOND filesystem was on an ARM64 HPC system\ref{fig:Apollo70}.  The system consisted of a dual socket ThunderX2 processor with Socket Direct Nvidia/Mellanox 100 Gb/s EDR InfiniBand HCA ports and switches.  Each node contained a 1 TB SATA interface SSD (HPE Part Number: 875852-001).  The SSD was formatted with an XFS filesystem back-end.
+
+Our first implementation of the new node-local private BeeOND filesystem design was on an ARM64 HPC system.  The system consisted of a dual socket ThunderX2 processor with Socket Direct Nvidia/Mellanox 100 Gb/s EDR InfiniBand HCA ports and switches.  Each node contained a 1 TB SATA interface SSD (HPE Part Number: 875852-001).  
+
+%\begin{figure}[!htb]
+%  \centerline{\includegraphics[width=\columnwidth]{images/Apollo70.png}}
+%  \caption{HPE Apollo 70 Compute Node}
+%  \label{fig:Apollo70}
+%\end{figure}
+
+We created a single 894GB partition on each SSD drive and formatted the drive as an XFS block device.  The BeeOND filesystem requires that the underlying block device support extended attributes. XFS filesystem provides extended attributes and is the standard filesystem for Red Hat 7.x and Red Hat 8.x Operating Systems.  As part of preparing each SSD block device for BeeOND use, we wrote a special UDEV rule that examined the partitions on the SSD device to make sure that only a single continuous partition of 894GB was on the device.  Next, our UDEV rule would assign the expected SSD, on \textit{/dev/sda1} to read/write permissions and create a symbolic device \textit{/dev/beeond\_store} to denote success of the readiness of the device for our node-local BeeOND filesystem block storage.  In the event of a failure of the UDEV rule, the compute node would not be put into Slurm queue and would be listed as not available.  
+
+Our Production HPC systems use custom \textit{nodeup} and \textit{nodedown} scripts to examine the compute nodes for hardware and software issues, prepare the compute nodes for Slurm allocations, and prepare the compute node shared storage mounts.  We added our BeeOND node-local compute node mounts and the \textit{beeond} device driver management to the custom scripts.  In the event of a device driver mismatch to the kernel, BeeOND can do run-time re-compiling of the kernel module.  We incorporated the recompiling feature into our node initialization script.  Finally, the scripts mounted \textit{/dev/beeond\_store} on mount \textit{/beeond} readying the SSD for our node-local filesystem.
+

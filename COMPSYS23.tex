@@ -1,0 +1,61 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Evaluating On-Demand Parallel File System Impacts on Compute-Bound Tasks\thanks{Sandia National Laboratories is a multimission laboratory managed and operated by National Technology \& Engineering Solutions of Sandia, LLC, a wholly owned subsidiary of Honeywell International Inc., for the U.S. Department of Energy’s National Nuclear Security Administration under contract DE-NA0003525.}
+}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Matthew L. Curry}
+\IEEEauthorblockA{\textit{Center for Computing Research} \\
+\textit{Sandia National Laboratories}\\
+Albuquerque, New Mexico, USA \\
+mlcurry@sandia.gov}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Michael Aguilar}
+\IEEEauthorblockA{\textit{High Performance Computing Systems} \\
+\textit{Sandia National Laboratories}\\
+Albuquerque, New Mexico, USA \\
+mjaguil@sandia.gov}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Shyamali Mukherjee}
+\IEEEauthorblockA{\textit{Computation and Analysis for National Security} \\
+\textit{Sandia National Laboratories}\\
+Livermore, California, USA \\
+smukher@sandia.gov}
+}
+
+\maketitle
+
+\begin{abstract}
+Current HPC systems are limited in performance and architecture by the the stranding of disaggregated components. In current HPC systems, common tools do not exist to manage both network fabrics and component resources, such as, CPUs, hierarchical memory components, and accelerators.  Due to lack of access to good resource management tools, current HPC systems suffer from inefficient over-design where resources must be provided locally, often in node, to make In instances that HPC running jobs could potentially require the resources.  In addition, the inability to dynamically share available resources, as they are required by running batch jobs can lead to reduced and inefficient computational performance and running job failure.  Centralized resource management can potentially mitigate, Out-of-Memory conditions, IO thashing, stranding of available resources, such as, CPUs, GPUs, and memories, and provide dynamic network fail-over.  It is clear that resource management, using a standardized interface, can enable clients to monitor, compose, and intelligently provision resources, in beneficial ways.
+
+The OpenFabrics Management Framework (OFMF) is a open sourcec resource manager being developed by the OpenFabric Alliance, the DMTF, SNIA, and the CXL Consortium. The OFMF implements Redfish and Swordfish through the implementation of a Swordfish Endpoint Emulator and network Agents.  The Emulator provides centralized resource monitoring and command control for the attached hardware resources and network fabrics, through matching network Agents. A Composability Manager, integrated with the OFMF, can mitigate stranded resources by providing a method for sharing hardware, CPUs, GPUs, and memories.  Integration with the OFMF provides the capability of dynamic provisioning of resources to maintain running client computations.
+\end{abstract}
+
+\begin{IEEEkeywords}
+component, formatting, style, styling, insert
+\end{IEEEkeywords}
+
+\input{introduction}
+\input{related}
+\input{methods}
+\input{experimental-design} %Methods subsection
+\input{results}
+\input{discussion}
+\input{conclusion}
+
+\bibliographystyle{plain}
+\bibliography{ieeecluster}
+
+\end{document}

@@ -1,0 +1,805 @@
+%% bare_conf.tex
+%% V1.4b
+%% 2015/08/26
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8b or later) with an IEEE
+%% conference paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/pkg/ieeetran 
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall the IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. The IEEE's font choices and paper sizes can   ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+\documentclass[conference]{IEEEtran}
+% Some Computer Society conferences also require the compsoc mode option,
+% but others use the standard conference format.
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[conference]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/pkg/ifpdf
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a larger sans serif font
+% than the serif footnote size font used in traditional IEEE formatting
+% and thus the need to invoke different subfig.sty package options depending
+% on whether compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+\usepackage{graphicx}
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\IEEEoverridecommandlockouts
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Evaluating Contention Between On-Demand Parallel File Systems and Computations}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Michael Aguilar, Matthew L. Curry, H. Lee Ward, and Kevin
+    Pedretti}
+	\IEEEauthorblockA{Sandia National Laboratories\thanks{Sandia National Laboratories is a multimission laboratory managed and operated by National Technology and Engineering Solutions of Sandia, LLC, a wholly owned subsidiary of Honeywell International, Inc., for the U.S. Department of Energy’s National Nuclear Security Administration under contract DE-NA0003525.}, Albuquerque, New Mexico 87123\\
+Email: \{mjaguil,mlcurry,lee,ktpedre\}@sandia.gov}}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+On-demand job-local parallel file systems, like BeeGFS On Demand
+(BeeOND), are used to provide high-speed storage space for HPC
+jobs. Such storage is often used for checkpoint-restart and
+data-analytic workloads. In this paper, we measure the potential
+impact of BeeOND daemons on compute-intensive processes, and vice
+versa. We run compute intensive jobs (non-communicating HPL) on nodes with
+BeeOND daemons, then run I/O workloads against the resultant file system.
+
+We found that small I/O operations do not tend to perturb computations
+significantly, while large I/O operations do. We present potential
+methods for improving user experiences with job-local parallel file
+systems ranging from administrative strategies to new features and
+implementation approaches.
+\end{abstract}
+
+% no keywords
+\begin{IEEEkeywords}
+%	foo, bar baz, bob
+%{\bf Keywords:} 
+On-Demand File System, Parallel file system, burst buffer, BeeGFS
+\end{IEEEkeywords}
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+% Explanation of scratch file limitations
+
+Ephemeral and job-dedicated parallel file systems that use node-local
+SSDs are seen as an important tool to shield jobs from contention and
+performance variation of shared parallel file system. Burst buffer
+architectures~\cite{MSST:burstbuffer, SC15:burstfs}, checkpointing
+frameworks that enable checkpoint-to-neighbor strategies like
+SCR~\cite{scr}, and on-demand file systems like BeeGFS On Demand (BeeOND~\cite{beeond})
+and Lustre On Demand~\cite{lustre-on-demand} are solutions geared
+toward providing this functionality. The benefits of this architecture
+are clear, and several extreme-scale systems (including
+the CORAL systems Summit and Sierra~\cite{coral-node-local}) use node-local
+storage for this purpose.
+
+However, evaluating the benefit of job-local storage can be
+complicated by workflows hosted within a single allocation.  For
+large, integrated workflows, different workflow components can be
+performing different types of work at the same time. For example, a
+single allocation may include a simulation component doing intense
+computation, a visualization component reading a large output file,
+and a data analytics task performing many small reads and writes. Such
+file systems, when integrated with a scheduler, may use storage from
+all nodes in a job, regardless of their individual need for
+storage. Therefore, all tasks performing I/O could potentially
+interact with every other node in the allocation to access storage
+devices and service daemons.
+
+While serving storage from a single node-local storage device is not
+usually considered a CPU intensive task, tightly coupled HPC
+applications have been demonstrated to be sensitive to low levels of
+operating system interference~\cite{noise}. A storage daemon running
+alongside with an application process could cause visible impact to a
+running application, as it consumes network resources, memory
+bandwidth, and CPU time.
+
+In this paper, we evaluate the impact of hosting BeeOND storage
+service daemons on compute nodes that are performing CPU- and
+memory-intensive computations. We do this by measuring impacts on both
+I/O rates and variance as well as computation speed on an HPC
+system. We evaluate a range of factors, including media type, storage
+organization, and I/O sizes.
+
+\section{Methods}
+
+Our experiments use three types of processes to provide different
+workloads and functions. The first type of process is the BeeOND
+daemon process, which serves storage requests that use the local
+storage. The second type is an I/O-bound process, which runs IOR
+against the shared BeeOND file system. The third type is a
+compute-bound process, which runs an embarrassingly parallel High Performance
+LINPACK (HPL~\cite{hpl}) job on a single node, without any network
+communication. Each type of process plays a role that could
+approximate an activity happening in a workflow with many parts.
+
+In order to more fully characterize performance and emulate more than
+one valid storage organization, we created two ways to structure these
+processes. The first is a more conventional manner, which we have
+termed ``overlapping:'' BeeOND daemons are started on every compute
+node, regardless of its role. This equates to a workflow running
+entirely within a single job allocation where all compute nodes have
+storage available.
+
+The other storage organization only runs BeeOND daemons on half the
+nodes in the allocation, which are also designated to run HPL; the
+other nodes in the system are only designated to run IOR. We call this
+organization ``non-overlapping,'' as IOR processes and BeeOND daemons
+do not occupy the same nodes. This corresponds to system designs where
+a subset of compute nodes have SSDs, and the file system they form is
+available to all nodes in a system. This also presents a worst case
+situation, as all I/O traffic is directed across the network, and
+nodes running HPL will be targeted twice as much.
+
+\begin{figure}[!htb]
+\includegraphics [width=\columnwidth]{images/BeeOND_experi_layout.png}
+    \caption{Parallel File System Layout for BeeOND Experiments on Stria}
+    \label{fig:beeondlayout}
+\end{figure}
+
+Figure~\ref{fig:beeondlayout} demonstrates how experiments of each type
+with 32 IOR nodes would look. In the case of an overlapping
+experiment, we see that IOR processes share their nodes with BeeOND
+daemons serving storage. In the non-overlapping experiments, we see
+that there is no local storage made available; in these cases, the BeeOND storage daemons
+are inactive. Note that, for experiments with less than 32 IOR
+processes, there will be a matching number of HPL processes, but the
+number of BeeOND daemons serving storage will remain fixed.
+
+We ran our experiments on Stria, a 288-node, Arm-based, HPE Apollo~70
+system. Each node includes two 28-core ThunderX2 processors running at
+2.5~GHz, 128~GiB of DDR4 memory, and Mellanox EDR Infiniband at
+100~Gb/s. Each node has been equipped with a 960~GB SATA M.2 SSD. Stria
+runs the Tri-Lab Operating System Stack (TOSS~\cite{toss}) version 3, a
+Red Hat Enterprise Linux 7 derivative, and the Advanced Tri-Lab
+Software Environment (ATSE~\cite{atse}) version 1.3. We used BeeGFS version
+7.1.3, configured with RDMA support. We integrated BeeOND with Slurm
+via custom modular prolog and epilog scripts. These scripts automate
+setup and tear-down of the BeeOND file system, and address several
+other production concerns.
+
+For each experiment, we allocated 64 nodes of Stria during regular
+operations. Each of these experiments split the nodes into two
+groups: One half was eligible to run HPL, while the other was eligible
+to run IOR. We performed a parameter sweep across a number of
+variables, as described below:
+\begin{itemize}
+  \item {\bf Overlapping vs. Non-Overlapping}. We ran all experiments
+    in both modes. For ``overlapping'' experiments, all nodes ran
+    BeeOND daemons with storage. For ``non-overlapping'' experiments,
+    half of the nodes ran BeeOND daemons with storage, and only HPL
+    processes were co-located with them.
+  \item {\bf SSD vs. RAM disk}. Each experiment was run with two media
+    types. For SSD tests, the on-node SSD was formatted with an XFS
+    partition for BeeOND. For RAM disk tests, each node had 4~GiB of
+    memory reserved as a RAM block device (via the {\tt brd} device
+    driver). Regardless of the block device type, all were formatted
+    with XFS.
+  \item {\bf Large vs. Small I/O}. For large experiments, 1~MiB blocks
+    were used for each I/O request. For small experiments, 128~byte
+    blocks were used for each I/O request. Regardless of I/O size,
+    each process writes 1~GiB of data.
+  \item {\bf With vs. Without Workload}. For a control, we measured
+    IOR performance without any HPL processes running alongside BeeOND
+    daemons. For the remainder, we launched one HPL process for every
+    IOR process. Each experiment was always made up of 64 nodes;
+    however, for the majority of the experiments, most of the nodes
+    did not host IOR or HPL processes.
+  \item {\bf IOR node count}. Each experiment always used a set 64-node
+    Slurm allocation, with either 64 or 32 nodes running active BeeOND storage servers
+    in the overlapping and non-overlapping cases, respectively. We varied the
+    number of IOR processes launched, with one process per node. In
+    the cases where we were introducing a workload, we launched the
+    same number of HPL processes on nodes with BeeOND storage, with one process per
+    node.
+\end{itemize}
+
+\section {Results}
+\label{s:results}
+
+In this section, we will detail and describe the measurements gathered
+from our experiments. First, we describe I/O performance with and
+without HPL running alongside BeeOND daemons. Second, we describe the
+performance of the HPL jobs that were placed with BeeOND
+daemons. Finally, we provide observations on BeeOND startup time.
+
+\subsection{I/O Interference}
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/ramdisk/large-nonoverlap.png}}
+  \caption{RAM Disk Large I/O Performance: Non-Overlapping Allocation}
+  \label{fig:ram-large-non}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/ramdisk/large-overlap.png}}
+  \caption{RAM Disk Large I/O Performance: Overlapping Allocation}
+  \label{fig:ram-large-over}
+\end{figure}
+
+In Figures \ref{fig:ram-large-non} and \ref{fig:ram-large-over},
+we show the results of using RAM disks for large I/O in both
+overlapping and non-overlapping situations. Servers running HPL with
+BeeOND in the non-overlapping configuration have approximately 10\%
+lower performance than those that do not. Variances between the two
+are mostly comparable, but are notably large when the experiment
+reaches full scale. The overlapping case shows a less I/O performance
+degradation than the non-overlapping case.
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/ramdisk/small-nonoverlap.png}}
+  \caption{RAM Disk Small I/O Performance: Non-Overlapping Allocation}
+  \label{fig:ram-small-non}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/ramdisk/small-overlap.png}}
+  \caption{RAM Disk Small I/O Performance: Overlapping Allocation}
+  \label{fig:ram-small-over}
+\end{figure}
+
+In Figures \ref{fig:ram-small-non} and \ref{fig:ram-small-over},
+we show the results of using RAM disks for small I/O in both
+overlapping and non-overlapping situations. There is very little
+differences in overall performance or variance between experiments
+running HPL and those that are not.
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/ssd/large-nonoverlap.png}}
+  \caption{SSD Large I/O Performance: Non-Overlapping Allocation}
+  \label{fig:ssd-large-non}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/ssd/large-overlap.png}}
+  \caption{SSD Large I/O Performance: Overlapping Allocation}
+  \label{fig:ssd-large-over}
+\end{figure}
+
+In Figures \ref{fig:ssd-large-non} and \ref{fig:ssd-large-over}, we
+show the results of using SSDs for large I/O in both overlapping and
+non-overlapping situations. Generally, variance increases sharply as
+IOR clients increase, with and without HPL. However, reading without
+load in the non-overlapping configuration has lower variance. The
+non-overlapping configuration has a clear decrease in performance when
+introducing HPL, while the overlapping configuration has a less
+notable trend.
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/ssd/small-nonoverlap.png}}
+  \caption{SSD Small I/O Performance: Non-Overlapping Allocation}
+  \label{fig:ssd-small-non}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/ssd/small-overlap.png}}
+  \caption{SSD Small I/O Performance: Overlapping Allocation}
+  \label{fig:ssd-small-over}
+\end{figure}
+
+In Figures \ref{fig:ssd-small-non} and \ref{fig:ssd-small-over}, we
+show the results of using SSDs for small I/O in both overlapping and
+non-overlapping situations. There are no notable differences in
+performance or variation when introducing HPL, or when using different
+allocation strategies.
+
+\subsection{Compute Interference}
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/hpl/nonoverlapping.png}}
+  \caption{HPL Performance During I/O Load: Non-Overlapping Allocation}
+  \label{fig:hpl-non}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centerline{\includegraphics[width=\columnwidth]{plots2/hpl/overlapping.png}}
+  \caption{HPL Performance During I/O Load: Overlapping Allocation}
+  \label{fig:hpl-over}
+\end{figure}
+
+In Figures \ref{fig:hpl-non} and \ref{fig:hpl-over}, we show how HPL
+performance was affected during IOR runs to BeeOND storage hosted
+on compute nodes. Small transfers overall did not perturb the HPL runs
+significantly, allowing them to demonstrate at least 99\% of their
+peak performance. Large transfers, however, did cause significant
+perturbation, decreasing computation rate by up to 9\%. Another feature
+of interest is that overlapping experiments, which have twice as many
+storage-serving nodes, shows what appears to be twice the
+(admittedly small) performance impact on HPL.
+
+\subsection {BeeOND Startup Performance}
+
+In order to make Slurm integration viable for our BeeOND
+implementation, we are currently starting and stopping our dynamic
+BeeOND file systems using Slurm prolog and epilog scripts.  The issue
+with this approach is that these scripts are required to complete
+their operations within approximately 20s of elapsed time.
+
+We measured the current elapsed time period for BeeOND to start and
+stop. We found that for all but the smallest jobs, BeeOND startup and
+tear-down exceeded this time constraint.
+
+\begin{center}
+%\begin{tabular}{ c c c }
+    \begin{tabular}{|p{2.0cm}|p{2.5cm}|p{2.5cm}|} 
+    \hline\hline
+Number of Nodes  & Startup Time Elapsed & Stop Time Elapsed \\
+\hline
+1 & 0m 11.291s & 0m 15.206s \\
+\hline
+2 & 0m 15.602s & 0m 24.508s \\
+\hline
+4 &  0m 23.238s & 0m 38.800s \\
+\hline
+8 & 0m 39.078s &  1m 8.100s \\
+\hline
+16  & 1m 11.623s & 1m 44.018s \\
+\hline
+32 & 2m 15.532s & 3m 50.520s \\
+\hline
+64 & 4m 25.641s & 7m 22.022s \\
+\hline
+128 & Unstable start-up & Unstable stop \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Discussion}
+The data showed in a variety of ways two general principles:
+\begin{itemize}
+  \item Large transfers tended to perturb computation, and computation
+    perturbed large transfers.
+  \item Small transfers and computations did not tend to interfere.
+\end{itemize}
+
+Many aspects of the system work to reduce the factor of CPU contention
+in serving a BeeOND file system. From a system architecture
+standpoint, both the storage controller and the network interface use
+Direct Memory Access (DMA) offloads to minimize CPU involvement in
+moving data into and out of memory. Further, both small and large I/O
+tests involve significant interactions with the BeeOND daemons, while
+only large I/O tests show performance degradation. Therefore, the
+prime suspect for the bottleneck is memory subsystem contention, but
+more measurements are required to prove the hypothesis.
+
+Equally notable is that, for the small scales shown in these
+experiments, the CPU load imposed by running BeeOND daemons was not
+significant, even at millions of I/O operations per second. Although
+there is clearly aggregation of I/O requests at some level, since the
+I/O rate exceeded the IOPS rating of the installed SSDs, the server
+implementation is efficient enough to incur negligible CPU load.
+
+The results presented here indicate that an integrated workflow could
+leverage BeeOND for IOP-intensive workloads without perturbing the
+CPU-intensive tasks. Future work includes demonstrating impact on more
+realistic applications that may have other components, including MPI
+communication and use of a global parallel file system.
+
+The results also show that for checkpoint-restart, a popular use case
+for ephemeral and in-allocation file systems, care should be
+exercised. Additional features for BeeOND and similar file systems
+could help improve overall system efficiency. For example, allowing a
+job to use storage on only certain nodes, or even change which nodes
+are preferred over time, would enable a user to preserve performance
+of CPU-intensive tasks. Another simpler feature would simply throttle
+clients and servers such that a node could preserve its memory
+bandwidth for applications. Checkpoint-restart operations have a
+well-understood model for determining target storage system
+bandwidth~\cite{daly}, and the 40~GB/s write performance for 64 nodes
+is much higher than required for efficient system use.
+
+Scale limitations in startup and tear-down restricted the size of
+experiments that we were able to run. However, we can see hints that
+large-scale deployments may encounter other issues. For example, I/O
+variance was significant with larger client count and I/O
+sizes. Further, an HPL performance ceiling was observed to be
+potentially different based on the number of BeeOND daemons serving
+storage; however, since only two data points exist for this dimension
+of the experiment, further investigation is required to prove this
+conclusion definitively.
+
+\section{Conclusions}
+
+In this paper, we detailed a wide set of experiments designed to show
+how much job-local shared parallel file system daemons interfere with
+computation-heavy workloads hosted on the same nodes. We used BeeOND,
+IOR, and HPL to construct several scenarios with a variety of storage
+organizations, media, and I/O workloads to quantify impact on I/O and
+computation rates.
+
+We found that large I/O requests, like those typically found in
+checkpoint-restart workloads, tended to interfere significantly with
+purely computational workloads hosted on nodes running storage
+daemons. However, small I/O requests did not show the same level of
+interference, and was practically undetectable through the I/O or
+computation rates.
+
+Through this work, we were able to identify a number of potential
+improvements for job-local shared parallel file system
+implementations. Areas of focus include network fabric configuration,
+local resource management policies, and cooperative client/server
+strategies to improve whole platform performance.
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,refs}
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+
+
+\begin{appendices}
+  \section{IOR commands}
+
+\begin{itemize}
+\item IOR Large Command: {\raggedright \tt ior -vv -C -F -t 1M -b 1g -g -i 41 -w -r -o /mnt/beeond/testfile}
+\item IOR Small Command: {\raggedright \tt ior -vv -C -F -t 128B -b 1g -g -i 41 -w -r -o /mnt/beeond/testfile}
+\end{itemize}
+
+\end{appendices}
+% that's all folks
+\end{document}
+
+
