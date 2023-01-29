@@ -4,13 +4,7 @@ Traditional HPC compute clusters, such as Beowulf are created by combining discr
 
 For example, an under-estimation of memory resources can causes out-of-memory conditions, for runninng jobs.  If insufficient memory resources are available to IO servers, filesystem failure can occur due to 'thrashing', due to Virtual Memory page swaps.
 
-Conversely, this architecture frequently results in overprovisioned or stranded resources.
-
- 
-
-stranded resources
-  1.  a resource that is on a compute server that is unavailable to other workloads
-  2.  resource that has been assigned to another workload that is unavailable to be used
+Conversely, this architecture frequently results in overprovisioned or stranded resources.  Stranded resources are defined as resources that are either on a compute server that is unavailable to the current workload, or that have been assigned to another workload that is unavailable to be used and are unavailable to be used by current workload.
  
  overprovsioned resources
   1.  resources that are unused and idle for the current workloads
