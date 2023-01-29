@@ -1,6 +1,12 @@
 \section{Introduction}
 
-Traditional Beowulf HPC cluster systems have been designed with 
+Traditional Beowulf HPC cluster systems have been designed with computing components that are combined into compute processing nodes based upon a projected application need.<cite >  Each compute processing node is provided with a fixed quantity of CPUs, memory devices, and accelerator cards.  Each compute node is designed to incorporate as many different run-time hardware needs, as possible.  This need to incorporate 'all of the options' makes traditional HPC architectures less efficient and application jobs more prone to run-time failure.  
+
+For instance, an under-estimation of memory resources can causes out-of-memory conditions, for runninng jobs.  If insufficient memory resources are available to IO servers, filesystem failure can occur due to 'thrashing', due to Virtual Memory page swaps.
+
+New HPC architectures are being developed to be able to provide on-demand resources.  Resource 'pools' can be provided near to running compute nodes.  Using fabrics,  
+
+
 
 
 Classically, parallel file systems have been a global resource shared among all tasks running on an HPC system. While there have been many efforts to reduce interference between jobs~\cite{10.1145/2063384.2063407,7573843}, these methods have generally not been able to achieve high-quality performance isolation. While new storage technologies have made parallel file systems faster, users are often frustrated at performance instability stemming from storage, especially for data analytics workloads.

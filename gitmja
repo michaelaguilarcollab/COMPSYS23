@@ -1,0 +1,3 @@
+git config --global user.email "mjhaaguilar@yahoo.com"
+git config --global user.name "Michael Aguilar"
+
