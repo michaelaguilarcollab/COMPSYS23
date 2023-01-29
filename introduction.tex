@@ -9,8 +9,19 @@ For instance, an under-estimation of memory resources can causes out-of-memory c
 
 New HPC architectures are being developed to be able to provide on-demand resources.  Resource 'pools' can be provided near to running compute nodes.  Using fabrics,  
 
+stranded resources
+  1.  a resource that is on a compute server that is unavailable to other workloads
+  2.  resource that has been assigned to another workload that is unavailable to be used
+ 
+ overprovsioned resources
+  1.  resources that are unused and idle for the current workloads
+  2.  too many of a particular resource for the workloads
 
-
+cooling and operating costs
+  1.  resources that are idle due to overprovisioning or stranding are still drawing energy and need to be cooled
+  2.  in large-scale HPC systems, cooling and energy usage become more crtical 
+  3.  4% of energy produced are used in data centers, 2% of energy usage was used in data centers, 2 years ago <cite>
+  
 
 Classically, parallel file systems have been a global resource shared among all tasks running on an HPC system. While there have been many efforts to reduce interference between jobs~\cite{10.1145/2063384.2063407,7573843}, these methods have generally not been able to achieve high-quality performance isolation. While new storage technologies have made parallel file systems faster, users are often frustrated at performance instability stemming from storage, especially for data analytics workloads.
 
