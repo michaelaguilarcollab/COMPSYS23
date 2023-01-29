@@ -1,21 +1,16 @@
 \section{Introduction}
 
-Traditional HPC compute clusters, such as Beowulf, are created by combining discrete compute servers over network fabric devices to form the cluster.  Each of the compute servers is provisioned with CPUs, memory devices, accellerator cards, and storage devices to incorporate as many different application runtime requirements as possible.<cite >. This need to incorporate 'all of the options' makes traditional HPC architectures less efficient and application jobs more prone to run-time failure.    
+Traditional HPC compute clusters, such as Beowulf, are created by combining discrete compute servers over network fabric devices to form the cluster.  Each of the compute servers is provisioned with CPUs, memory devices, accelerator cards, and storage devices to incorporate as many different application runtime requirements as possible.<cite >. This need to incorporate 'all of the options' makes traditional HPC architectures less efficient and application jobs more prone to run-time failure.    
+For example, an under-estimation of memory resources can cause out-of-memory conditions and result in filesystem failure can occur due to virtual memory page swap thrashing and eventually application failure.
 
-For example, an under-estimation of memory resources can causes out-of-memory conditions, for runninng jobs.  If insufficient memory resources are available to IO servers, filesystem failure can occur due to 'thrashing', due to Virtual Memory page swaps.
-
-Conversely, this architecture frequently results in overprovisioned or stranded resources.  Stranded resources are defined as resources that are either on a compute server that is unavailable to the current workload, or that have been assigned to another workload that is unavailable to be used and are unavailable to be used by current workload.
- 
- overprovsioned resources
-  1.  resources that are unused and idle for the current workloads
-  2.  too many of a particular resource for the workloads
-
-cooling and operating costs
-  1.  resources that are idle due to overprovisioning or stranding are still drawing energy and need to be cooled
-  2.  in large-scale HPC systems, cooling and energy usage become more crtical 
-  3.  4% of energy produced are used in data centers, 2% of energy usage was used in data centers, 2 years ago <>
+Conversely, this architecture frequently results in overprovisioned or stranded resources.  Stranded resources are defined as resources that are either on a compute server that is unavailable to a workload, or that have been assigned to a workload and unavailable to be used by other workloads. Overprovisioned resources are those that are either underused, or unused and idle for the current workloads but still draw energy and need to be cooled and The facility costs scale of large HPC systems, cooling and energy usage become  
+  (4% of energy produced are used in data centers, 2% of energy usage was used in data centers, 2 years ago <>
   <https://www.dw.com/en/data-centers-energy-consumption-steady-despite-big-growth-because-of-increasing-efficiency/a-60444548>
   <https://www.marketscreener.com/quote/stock/VMWARE-INC-58476/news/VMware-Why-Energy-Sobriety-Should-Be-Top-of-Mind-for-Every-Business-Leader-This-Year-42823597/>
+  
+A promising solution to addressing the provisioning and computational efficiency limitations, as well as hardware and operating costs, of integrated, siloed, systems is the use of Composable Disaggregated Infrastructures 
+
+  
   
 Classically, parallel file systems have been a global resource shared among all tasks running on an HPC system. While there have been many efforts to reduce interference between jobs~\cite{10.1145/2063384.2063407,7573843}, these methods have generally not been able to achieve high-quality performance isolation. While new storage technologies have made parallel file systems faster, users are often frustrated at performance instability stemming from storage, especially for data analytics workloads.
 
