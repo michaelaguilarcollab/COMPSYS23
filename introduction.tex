@@ -28,34 +28,8 @@ Disaggregate computational resources are not statically provisioned in servers, 
 
 Network disaggregation is already common for storage devices (e.g., NVMe-oF); current trends are pushing this paradigm further, extending it to computational engines, memory elements, accelerators… eventually to all forms of compute resources required by modern HPC applications.  However, disaggregated resource types are increasingly being accessed over an increasing number of fabric types and technologies; and being able to fully manage these resources in a dynamic, heterogenous environment requires managing those fabrics and the hardware resources that may be accessed thereon. The management and optimization of such a diverse set of fabrics and fabric technologies to realize the benefits of Composable Disaggregated Infrastructures is quickly becoming a complex issue to solve for infrastructure managers, especially in heterogenous multi-vendor environments, with multiple vendor-sourced hardware and the ever-expanding collection of proprietary APIs and tools. Currently, there is no common open-source manager interface or model available to configure the resource pools and the fabrics that link them with applications that need them. So every tool & every middleware library provider needs unique calls to specific fabric managements stack for each available fabric You end up with very diverse administration domains w/ administrators having to manage each fabric differently through different tools.
 
-The industry needs interoperatbility through common interfaces to enavle managers to efficiently connect workloads iwsth resources in a dynam3eic ecosystem withoyut having to worrry about the underlying network interconnect.  This paper describes an Open Fabric Management framework, an API, tool set, and central repository designed for managing comnposable resources over multiple fabrics for manipulating resources using client-friendly abstractions, and configuring fabric interconectsso that workloads can be linked with disaggregated resources over dynamic fabric infrastructrues.
+The industry needs interoperatbility through common interfaces to enable Composability Managers to efficiently connect workloads with resources in a dynamic ecosystem while being able to the abstractly control the underlying network interconnect.  This paper describes an OpenFabric Management Framework (OFMF), an API, tool set, and central repository designed for managing comnposable resources over multiple fabrics for manipulating resources using client-friendly abstractions, and configuring fabric interconectsso that workloads can be linked with disaggregated resources over dynamic fabric infrastructrues.
 
   
- 
-
-\begin{table*}
-  \caption{An overview of several performance profiles, example leading representative benchmarks, and degree of performance isolation typically expected between nodes and/or tasks by HPC users.}
-  \label{Table:profiles}
-  \begin{center}
-%\begin{tabular}{|p{0.22\linewidth}|p{0.45\linewidth}|p{0.18\linewidth}|p{0.15\linewidth}|}
-\begin{tabular}{|l|l|l|l|}
-\hline
-{\bf Profile} & {\bf Description} & {\bf Benchmark} & {\bf Isolation} \\
-\hline
-CPU-bound & Heavy use of CPU and accelerators & HPL~\cite{hpl} & Strong\\
-\hline
-Memory-bound & Reads and writes to main memory & \raggedright STREAM~\cite{stream}, HPCG~\cite{hpcg} & Strong\\
-\hline
-Network-bound & Sending and receiving data among nodes in a task & \raggedright Intel MPI Benchmarks~\cite{imb} & Medium-to-Strong\\
-\hline
-IOPs-bound & Many small reads/writes to a few files & IOR-hard~\cite{io500} & Weak\\
-\hline
-Bandwidth-bound & Large reads/writes to a few files & IOR-easy~\cite{io500} & Weak\\
-\hline
-Metadata-bound & Many small reads/writes to may files & mdtest~\cite{ior} & Weak \\
-\hline
-\end{tabular}
-\end{center}
-\end{table*}
 
 
