@@ -3,21 +3,19 @@
 Traditional HPC compute clusters are created by combining separate compute servers over network fabric devices to form the cluster.  Each individual compute server is provisioned with its own CPUs, memory devices, accelerator cards, and storage devices to incorporate as many different application runtime requirements as possible.<cite >. This need to incorporate 'all of the options' makes traditional HPC architectures less flexible, inefficient, and can lead to situations where application jobs more prone to run-time failure.    
 For example, design considerations that lead to an under-estimation of compute server memory resources can cause out-of-memory conditions.  In another example, IO server memory oversubscription can result in filesystem failure can occur due to virtual memory page swap thrashing and eventually application failure when the dynamic addition of memory would be able to help mitigate this problem.  
 
-Yet another issue with current HPC architecture that is a result of architectural inflexibility frequently results in overprovisioned or stranded resources.  Stranded resources are defined as resources that are either on a compute server that is unavailable to a workload, or that have been assigned to a workload that isn't making use of them.  These resources have been made to be unavailable to be used by other workloads. Overprovisioned resources are those that are either underused, or unused and idle for the current workloads but still draw energy and cooling.  
-
-
-
-\begin{figure}[stranded]
-\centerline{\includegraphics[width=\columnwidth]{Stranded_Resources.jpeg}}
-\caption{Inefficient HPC Use of Stranded Resources.} \label{Fig:network}
-\end{figure}
-
+Yet another issue with current HPC architecture that is a result of architectural inflexibility frequently results in overprovisioned or stranded resources.  Stranded resources are defined as resources that are either on a compute server that is unavailable to a workload, or that have been assigned to a workload that isn't making use of them.  These resources have been made to be unavailable to be used by other workloads. Overprovisioned resources are those that are either underused, or unused and idle for the current workloads but still draw energy and cooling.  Energy wasted in data centers is becoming an increasingly important issue.  {cite https://www.energy.gov/eere/buildings/data-centers-and-servers } 
 The facility costs scale of large HPC systems, cooling and energy usage become  
   (4% of energy produced are used in data centers, 2% of energy usage was used in data centers, 2 years ago <>
   <https://www.dw.com/en/data-centers-energy-consumption-steady-despite-big-growth-because-of-increasing-efficiency/a-60444548>
   <https://www.marketscreener.com/quote/stock/VMWARE-INC-58476/news/VMware-Why-Energy-Sobriety-Should-Be-Top-of-Mind-for-Every-Business-Leader-This-Year-42823597/>
-  
+
 A solution to addressing the ovprovisioning and computational efficiency limitations, as well as hardware and operating costs, of integrated, siloed, systems is the use of Composable Disaggregated Infrastructures where computational resources are not statically provisioned in servers, but instead are physically disaggregated and connected through High-speed/low-latency network fabrics.  These resources can be dynamically provisioned and reprovisioned to client applications, as needed and are thus not only more efficient to manage by removing unnecessary hardware, but help reduce energy consumption and datacenter cooling costs.
+
+
+\begin{figure}[stranded]
+\centerline{\includegraphics[width=\columnwidth]{Stranded_Resources.jpeg}}
+\caption{More Efficiency is Composable HPC Use of Resources.} \label{Fig:network}
+\end{figure
 
 Network disaggregation is already common for storage devices (e.g., NVMe-oF); current trends are pushing this paradigm further, extending it to computational engines, memory elements, accelerators… eventually to all forms of compute resources required by modern HPC applications.  
 
