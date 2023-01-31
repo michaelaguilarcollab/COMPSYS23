@@ -2,11 +2,24 @@
 
 \subsection{Design Considerations for a Composability Manager}
 
-The larger the HPC system, the greater the potential impact of dynamic composability of disaggregated components to energy efficiency and computational stability.  However, the management layer must be scalable to handle hardware telemetry, device state, device capabilities, and management information from large numbers of resources. Our Composability Manager consists of the OFMF Services Layer, a Composability Layer that is designed to make the best decisions with available resources, and Component Management Agents.
+The larger the HPC system, the greater the potential impact of dynamic composability of disaggregated components to energy efficiency and computational stability.  However, a centralized composabilty management layer must be scalable to be able to handle massive amounts of hardware telemetry, device states, device capabilities, and subscription information from large numbers of resources.  The OFMF is a centralized abstract management layer that exposes a RESTful API <cite> and incorporates DMTF Redfish <cite> and SNIA Swordfish <cite> schemas to enable infrastructure clients (e.g., users, management software, programming frameworks) to manage composition of, and fabric configuration to computational resources.  The OFMF transactions are stateless and lightweight, consisting of JSON data carried on Open Data Format (OData).  The Component Management Agents and the Composability Layer interact with the OFMF layer.  Through the use of Kafka <cite> or RabbitMQ <cite> interfaces, the OFMF is designed to be able to scale.
 
-The OFMF is a centralized abstract management layer that exposes a RESTful API <cite> and incorporates DMTF Redfish <cite> and SNIA Swordfish <cite> schemas to enable infrastructure clients (e.g., users, management software, programming frameworks) to manage composition of, and fabric configuration to computational resources.  The OFMF transactions are stateless and lightweight, consisting of JSON data carried on Open Data Format (OData).  The Component Management Agents and the Composability Layer interact with the OFMF layer.
+Figure TBD shows a higher level architectural diagram of the components making up the OFMF and a composability solution.  The left side of the diagram shows the user, admininisration, orchestration, automation, etc. Clients can be various Workload Managers, application and run-time libraries, monitoring systems, and System Administrators.  Clients interact with the Composability Layer you see between clients and the OFMF. The Composability Layer manages hardware resources to best provide run-time computational performance, energy efficiency, and resource monitoring by applying policies and updating subscribed clients with events. The Composability Layer allows clients to track the current state and coordinate resources that are within a disaggregated HPC system.
 
-Figure TBD shows a higher level architectural diagram of the components making up the OFMF.  The left side of the diagram shows the user, admininisration, orchestration, automation, etc. Clients can be various Workload Managers, application and run-time libraries, monitoring systems, and System Administrators.  Clients interact with the Composability Layer you see between clients and the OFMF. The Composability Layer manages hardware resources to best provide run-time computational performance, energy efficiency, and resource monitoring by applying policies and updating subscribed clients with events. The Composability Layer allows clients to track the current state and coordinate resources that are within a disaggregated HPC system.  
+\begin{figure}[ComposableSolution]
+  \centerline{\includegraphics[width=\columnwidth]{images/ComposabilityHL_Diagram.jpeg}}
+  \caption{Composability Solution based upon the OpenFabrics Management Framework}
+  \label{fig:ofmf}
+\end{figure}
+
+
+
+
+
+a Composability Layer that is designed to make the best decisions with available resources, and Component Management Agents.
+
+
+
 
 The middle management layer is a representation of the functional blocks making up the OFMF. An HPC disaggregated infrastructure is represented under a single Redfish tree that includes all the fabrics and resources available. The OFMF services provide a subscription-based central repository for telemetry information, provisioning, and event logs.  Client requests are received to the OFMF through the Composability Layer, are forwarded to the appropriate fabric manager via dedicated light-weight technology-specific Agents. 
 
