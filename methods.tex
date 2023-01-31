@@ -10,13 +10,8 @@ Figure TBD shows a higher level architectural diagram of the components making u
 
 The middle management layer is a representation of the functional blocks making up the OFMF. An HPC disaggregated infrastructure is represented under a single Redfish tree that includes all the fabrics and resources available. The OFMF services provide a subscription-based central repository for telemetry information, provisioning, and event logs.  Client requests are received to the OFMF through the Composability Layer, are forwarded to the appropriate fabric manager via dedicated light-weight technology-specific Agents. 
 
-The Agents on the right translate between the OFMF and the network fabric-specific providers (such as subnet managers and fabric managers) and trigger them to make the actual changes to their resources in their own technology-specific manner with their own technology-specific configuration tools. 2)And on the far right is the hardware that makes up the fabric and the resources that are accessed thereon. So, using a standardized interface enables clients to apply their own policies to monitor, compose, and reconfigure their provisioned resources according to current workload needs without having to do so through the increasing number of fabric-specific APIs.And through light-weight fabric agents, fabric vendors to keep their fabric management intelligence proprietary and therefore maintain their value-add / market advantage.
+The Agents on the right translate between the OFMF and network fabric-specific providers.  These Agents provide access to network fabrics and trigger them to make the actual changes to their resources in their own technology-specific manner with their own technology-specific configuration tools.  
 
-[1:44 PM] Cayton, Phil
-  
-
-[1:44 PM] Cayton, Phil
-...
 
 
 ---------------------------------------------------
