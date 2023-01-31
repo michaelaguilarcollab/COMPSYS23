@@ -2,7 +2,7 @@
 
 \subsection{Design Considerations for a Composability Manager}
 
-The larger the HPC system, the greater the potential impact of Composability, at scale, to disaggregated components.  However, the management layer must be scalable to handle hardware telemetry, device state, device capabilities, and management information from large numbers of resources. Our Composability Manager consists of the OFMF Services Layer, a Composability Layer that is designed to make the best decisions with available resources, and Component Management Agents.
+The larger the HPC system, the greater the potential impact of dynamic composability of disaggregated components to energy efficiency and computational stability.  However, the management layer must be scalable to handle hardware telemetry, device state, device capabilities, and management information from large numbers of resources. Our Composability Manager consists of the OFMF Services Layer, a Composability Layer that is designed to make the best decisions with available resources, and Component Management Agents.
 
 The OFMF is a centralized abstract management layer that exposes a RESTful API <cite> and incorporates DMTF Redfish <cite> and SNIA Swordfish <cite> schemas to enable infrastructure clients (e.g., users, management software, programming frameworks) to manage composition of, and fabric configuration to computational resources.  The OFMF transactions are stateless and lightweight, consisting of JSON data carried on Open Data Format (OData).  The Component Management Agents and the Composability Layer interact with the OFMF layer.
 
