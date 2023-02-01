@@ -1,9 +1,40 @@
 \section{Related Work}
 Current HPC architectures are designed to parallelize fixed quantities of homogenous commodity servers that are implemented as compute hardware.<cite Beowulf>  Each compute server is a fixed quantity of preordained resources, whether it be CPUs, memory, or accelerators.  Heterogenity in compute node features is important to create environments that are adapted to be most energy efficient and computationally performant for individual applications.  However, most of today's HPC Workload Managers are configured to allocate compute node hardware based upon simple differences between these fixed resources compute nodes.  New Workload Managers, such as Fuzzball from Ctrl IQ \cite{fuzzball} and Flux \cite{flux} can specify dynamic resources to fulfill the needs of their scheduled Batch jobs.  Because Workload needs can be chosen by the running application, there is an opportunity to dynamically assemble resources to most efficiently complete the computations.
  
-As stated earlier in this paper, HPC systems that are architecturally designed out of composable disaggregated resoures, have the potential to save energy, reduce cooling costs, and mitigate run-time performance issues.  Because of the enormous potential, it has been stated that Composable Infrastructure will grow in market size to over 5 billion dollars by 2023. <cite https://www.reportlinker.com/p05620908/Composable-Infrastructure-Market-by-Type-Vertical-And-Region-Global-Forecast-to.html >. <cite https://venturebeat.com/data-infrastructure/liqid-touts-composable-infrastructure-at-dell-technologies-world/ >. New companies, such as, Liqid <cite> and GigaIO <cite> have been started to provide software solutions to manage composability.  
+As stated earlier in this paper, HPC systems that are architecturally designed out of composable disaggregated resoures, have the potential to save energy, reduce cooling costs, and mitigate run-time performance issues.  Because of the enormous potential, it has been stated that Composable Infrastructure will grow in market size to over 5 billion dollars by 2023. \cite{reportlinker}. New companies, such as, Liqid \cite{liqid} and GigaIO \cite{gigaio} have been started to provide software solutions to manage composability.  
 
 THe Liqid Composability solution manages resources and has built-in multi-fabric support, like the OFMF.  The GigaIO solution is built up using Redfish and the OpenFabrics Alliance Libfabric.  However, in both cases, the Composability software solutions are not open-source.  In addition, the OFMF is a collaborative effort between the OpenFabrics Alliance, DMTF as the Redfish provider, and SNIA as the Swordfish provider.
+
+\bibitem{reportlinker}
+  Composable Infrastructure Market by Type, Vertical And Region - Global Forecast to 2023,
+  url="https://www.reportlinker.com/p05620908/Composable-Infrastructure-Market-by-Type-Vertical-And-Region-Global-Forecast-to.html",
+  2018.
+  
+\bibitem{liquid}
+  Liqid touts composable infrastructure at Dell Technologies World,
+  url="https://venturebeat.com/data-infrastructure/liqid-touts-composable-infrastructure-at-dell-technologies-world/",
+  May 3, 2022.
+  
+\bibitem{gigaio}
+  url="https://gigaio.com/",
+  note = "[Online: Accessed: Feb 1, 2023]". 
+  
+\bibitem{liqidmf}
+  Liqid introduces multi-fabric support for composable infrastructure,
+  url = "https://www.itopstimes.com/itops/liqid-introduces-multi-fabric-support-for-composable-infrastructure/",
+  April 29th, 2019.
+  
+\bibitem{cdi}
+  Composable disaggregated infrastructure,
+  url = "https://en.wikipedia.org/wiki/Composable_disaggregated_infrastructure",
+  note = "[Online: Accessed: Feb 1, 2023]".
+
+\bibitem{whatcdi}
+  What is composable infrastructure?,
+  url="https://www.networkworld.com/article/3266106/what-is-composable-infrastructure.html",
+  MAR 27, 2018.
+
+\bibitem{fungible}
 
 https://www.itopstimes.com/itops/liqid-introduces-multi-fabric-support-for-composable-infrastructure/
 
