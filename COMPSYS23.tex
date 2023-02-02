@@ -8,33 +8,33 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
 
-\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Centralized Composable HPC Management with the OpenFabrics Managment Framework\thanks{Sandia National Laboratories is a multi-mission laboratory managed and operated by National Technology \& Engineering Solutions of Sandia, LLC, a wholly owned subsidiary of Honeywell International Inc., for the U.S. Department of Energy’s National Nuclear Security Administration under contract DE-NA0003525.}\thanks{The OpenFabrics Alliance (OFA) mission is to accellerate the development and adoption of advanced fabrics for the benefit of the advanced networks ecosystem, which is accomplished by: creating opportunities for collaboration among those who develop and deploy such fabrics, incubating and evolving vendor independent open source software for fabrics, and supporting and promoting the use of such fabric technology software.}
+\title{Centralized Composable HPC Management with the OpenFabrics Managment Framework\thanks{Sandia National Laboratories is a multi-mission laboratory managed and operated by National Technology \& Engineering Solutions of Sandia, LLC, a wholly owned subsidiary of Honeywell International Inc., for the U.S. Department of Energy’s National Nuclear Security Administration under contract DE-NA0003525.}\thanks{The OpenFabrics Alliance (OFA) mission is to accelerate the development and adoption of advanced fabrics for the benefit of the advanced networks ecosystem, which is accomplished by: creating opportunities for collaboration among those who develop and deploy such fabrics, incubating and evolving vendor independent open source software for fabrics, and supporting and promoting the use of such fabric technology software.}
 }
 
-\author{\IEEEauthorblockN{1\textsuperscript{st} Michael Aguilar}
+\author{\IEEEauthorblockN{Michael Aguilar}
 \IEEEauthorblockA{\textit{High Performance Computing Systems} \\
 \textit{Sandia National Laboratories}\\
 Albuquerque, New Mexico, USA \\
 mjaguil@sandia.gov}
 \and
-\IEEEauthorblockN{2\textsuperscript{nd} Phil Cayton}
 \IEEEauthorblockA{\textit{Senior Staff Engineer} \\
+\IEEEauthorblockN{2\textsuperscript{nd} Phil Cayton}
 \textit{Intel Corporation}\\
 Hillsboro, Oregon, USA \\
 phil.cayton@intel.com}
 \and
-\IEEEauthorblockN{3\textsuperscript{rd} Michele Gazetti}
-\IEEEauthorblockA{\textit{Research Engineer} \\
+\IEEEauthorblockN{Christian Pinto}
+\IEEEauthorblockA{\textit{Staff Research Scientist} \\
 \textit{IBM Research Europe}\\
 Dublin, Ireland\\
-Michele.Gazzetti1@ibm.com}
+christian.pinto@ibm.com}
 \and
-\IEEEauthorblockN{3\textsuperscript{rd} Russ Herrell }
+\IEEEauthorblockN{Russ Herrell }
 \IEEEauthorblockA{\textit{EE System Architect} \\
 \textit{Hewlett Packard Enterprise}\\
 Fort Collins, CO, USA\\
@@ -45,11 +45,11 @@ russ.herrell@hpe.com}
 
 \begin{abstract}
 
-Traditional HPC systems are provisioned with static fixed quantities of memory, storage, accelerators, and CPU resources to execute requested computation.  This is not sufficient for today's datacenters that are running modern dynamic workloads and results in workloads executing on systems that are not optimized for their needs.  Workloads may require hardware resources e.g. GPUs that are present in the datacenter but not on the server on which the workload is executing.  Conversely, compute resources on a given server may be under utilized because they are not required by the workload running on that server.  Thus, datacenters often end up overprovisioning hardware resources to attempt to enable any workload to run on any server.   
+Traditional HPC systems are provisioned with static fixed quantities of memory, storage, accelerators, and CPU resources to execute requested computation.  This is not sufficient for today's datacenters that are running modern dynamic workloads, resulting in workloads executing on systems that are not optimized for their needs.  Workloads may require hardware resources, e.g. GPUs, that are present in the datacenter but not on the server on which the workload is executing.  Conversely, compute resources on a given server may be under utilized because they are not required by the workload running on that server.  Thus, datacenters often end up overprovisioning hardware resources to attempt enablign any workload to run on any server.   
 
-Composable Disaggregated Infrastructure (CDI) enables servers to be dynamically composed of hardware resources in the datacenter as needed by a given workload.  Centralized resource management can potentially mitigate, out-of-memory conditions, IO thashing, stranding of available resources, such as, CPUs, GPUs, and memories, and provide dynamic network fail-over.  Resource Management, using a standardized interface, can enable clients to monitor, compose, and intelligently provision resources, in beneficial ways.
+Composable Disaggregated Infrastructure (CDI) enables servers to be dynamically composed out of hardware resources phyisically disaggregated in the datacenter, and as needed by a given workload.  Centralized resource management can potentially mitigate, out-of-memory conditions, IO thrashing, stranding of available resources, such as, CPUs, GPUs, and memories, and provide dynamic network fail-over.  Resource Management, using a standardized interface, can enable clients to monitor, compose, and intelligently provision resources, in beneficial ways.
 
-The OpenFabrics Alliance in collaboration with the DMTF, SNIA, and the CXL Consortium, is developing an OpenFabrics Management Framework (OFMF) and a hardware Composability Manager.  The OFMF is a open-source Resource Manager is designed for configuring fabric interconnects and managing composable disaggregated resources in dynamic HPC infrastructures using client-friendly abstractions.  The goal of the OFMF is to enable interoperability through common interfaces to enable client Managers to efficiently connect workloads with resources in a complex heterogenous ecosystem without having to worry about the underlying network technology.  
+The OpenFabrics Alliance in collaboration with the DMTF, SNIA, and the CXL Consortium, is developing an OpenFabrics Management Framework (OFMF) and a hardware Composability Manager.  The OFMF is a open-source Resource Manager is designed for configuring fabric interconnects and managing composable disaggregated resources in dynamic HPC infrastructures using client-friendly abstractions. The goal of the OFMF is to enable interoperability through common interfaces to enable client Managers to efficiently connect workloads with resources in a complex heterogenous ecosystem, without having to worry about the underlying network technology.  
 
 \end{abstract}
 
@@ -62,102 +62,8 @@ composable disaggregated infrastructure, heterogeneous ecosystem management, str
 \input{methods}
 \input{conclusion}
 
-\bibliographystyle{plain}
-%\bibliography{COMPSYS23}
-
-\begin{thebibliography}{20}
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,COMPSYS23}
 
 
-\bibitem{beowulf}
-  Beowulf Cluster,
-  url = "https://en.wikipedia.org/wiki/Beowulf_cluster",
-  note = "[Online: Accessed: Feb 1, 2023]".
-
-\bibitem{eere}
-  Data Centers and Servers - Buildings,
-  url = "https://www.energy.gov/eere/buildings/data-centers-and-servers",
-  2021.
-  
-\bibitem{dw}
-  Deutsche Welle,
-  Data centers keep energy use steady despite big growth,
-  url="https://www.dw.com/en/data-centers-energy-consumption-steady-despite-big-growth-because-of-increasing-efficiency/a-60444548",
-  January 24, 2022.
-  
-\bibitem{vmware}
-  WMware,
-  VMware : Why Energy Sobriety Should Be Top of Mind for Every Business Leader This Year,
-  url="https://www.marketscreener.com/quote/stock/VMWARE-INC-58476/news/VMware-Why-Energy-Sobriety-Should-Be-Top-of-Mind-for-Every-Business-Leader-This-Year-42823597/"
-  01/26/2023
-  
-\bibitem{fuzzball}
-  CtrlIQ Fuzzball,
-  url="https://ciq.co/products/fuzzball/hpc/",
-  2023.
-  
-\bibitem{flux}
-  Flux:  A Fully Hierarchical Workload Manager for Supercomputing,
-  url="https://ipo.llnl.gov/sites/default/files/2022-02/Flux_RD100_Final.pdf",
-  2023. 
-  
-\bibitem{rlinker}
-  Composable Infrastructure Market by Type, Vertical And Region - Global Forecast to 2023,
-  url="https://www.reportlinker.com/p05620908/Composable-Infrastructure-Market-by-Type-Vertical-And-Region-Global-Forecast-to.html",
-  2018.
-  
-\bibitem{liqid}
-  Liqid touts composable infrastructure at Dell Technologies World,
-  url="https://venturebeat.com/data-infrastructure/liqid-touts-composable-infrastructure-at-dell-technologies-world/",
-  May 3, 2022.
-  
-\bibitem{gigaio}
-  url="https://gigaio.com/",
-  note = "[Online: Accessed: Feb 1, 2023]". 
-  
-\bibitem{liqidmf}
-  Liqid introduces multi-fabric support for composable infrastructure,
-  url = "https://www.itopstimes.com/itops/liqid-introduces-multi-fabric-support-for-composable-infrastructure/",
-  April 29th, 2019.
-  
-\bibitem{cdi}
-  Composable disaggregated infrastructure,
-  url = "https://en.wikipedia.org/wiki/Composable_disaggregated_infrastructure",
-  note = "[Online: Accessed: Feb 1, 2023]".
-
-\bibitem{whatcdi}
-  What is composable infrastructure?,
-  url="https://www.networkworld.com/article/3266106/what-is-composable-infrastructure.html",
-  MAR 27, 2018.
-
-\bibitem{fungible}
-  Fungible, Inc.,
-  url = "https://en.wikipedia.org/wiki/Fungible_Inc.",
-  note = "[Online: Accessed: Feb 1, 2023]".
-  
-\bibitem{kafka}
-  Kafka,
-  url = "https://kafka.apache.org/documentation/",
-  note = "[Online: Accessed: Feb 1, 2023]".
-
-\bibitem{rabbitmq}
-  RabbitMQ,
-  url = "https://www.rabbitmq.com/",
-  note = "[Online: Accessed: Feb 1, 2023]".
- 
-\bibitem{redfish}
-   Redfish,
-   url = "https://www.dmtf.org/standards/redfish",
-   note = "[Online: Accessed: Feb 1, 2023]".
- 
-\bibitem{swordfish}
-   Swordfish,
-   url = "https://sniasmiblog.org/2020/04/whats-new-with-snia-swordfish",
-   note = "[Online: Accessed: Feb 1, 2023]".
-   
-\bibitem{restful}
-   Overview of RESTful API Description Languages,
-   url = "https://en.wikipedia.org/wiki/Overview_of_RESTful_API_Description_Languages",
-   note = "[Online: Accessed: Feb 1, 2023]".
-
-\end{thebibliography}
 \end{document}
