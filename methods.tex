@@ -7,7 +7,7 @@ The larger the HPC system, the greater the potential impact of dynamic composabi
 Figure \ref{fig:ofmf} shows a higher level architectural diagram of the components making up the OFMF and a composability solution.  The left side of the diagram shows the user, admininisration, orchestration, automation, etc. Clients can be various Workload Managers, application and run-time libraries, monitoring systems, and System Administrators.  Clients interact with the Composability Layer between clients and the OFMF. The Composability Layer manages hardware resources to best provide run-time computational performance, energy efficiency, and resource monitoring by applying policies and updating subscribed clients with events. The Composability Layer allows clients to track the current state and coordinate resources that are within a disaggregated HPC system.
 
 \begin{figure}[ComposableSolution]
-  \centerline{\includegraphics[width=\columnwidth]{ComposabilityHL_Diagram.jpeg}}
+  \centerline{\includegraphics[width=\columnwidth]{Slide19.jpeg}}
   \caption{Composability Solution based upon the OpenFabrics Management Framework}
   \label{fig:ofmf}
 \end{figure}
@@ -17,7 +17,7 @@ The middle section of the diagram is a representation of the functional blocks m
 The Agents on the right translate between the OFMF and network fabric-specific providers.  These Agents provide access to the fabrics and trigger them to make the actual changes to their resources in their own technology-specific manner with their own technology-specific configuration tools.  Shown in \ref{fig:agent} is a diagram of a Gen-Z fabric Agent.  In this diagram, the Gen-Z Agent translates Redfish commands to Gen-Z Subnet Manager commands.  These commands provide fabric telemetry and command and control, for the fabric.  Other Agents follow the same design.
 
 \begin{figure}[Hardware Agent]
-  \centerline{\includegraphics[width=\columnwidth]{Slide32.jpeg}}
+  \centerline{\includegraphics[width=\columnwidth]{Slide20.jpeg}}
   \caption{Network Fabric Agent for the OpenFabrics Management Framework}
   \label{fig:agent}
 \end{figure}
