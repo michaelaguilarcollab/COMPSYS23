@@ -1,8 +1,8 @@
 \section{Introduction}
 
-Traditional HPC compute clusters are created by combining separate compute servers over network fabric devices to form the cluster.  Each individual compute server is statically provisioned with its own CPUs, memory devices, accelerator cards, and storage devices to incorporate as many different application runtime requirements as possible\cite{beowulf}. This need to incorporate 'all of the options' often results in resource overprovisioning, makes traditional HPC architectures less flexible and more inefficient, and can lead to situations where application jobs are more prone to run-time failure. This paper target HPC infrastructure, however it is worth to note that resources overprovisioning and inefficient use of hardware are common issues to any large scale computing facility \cite{borg-google, pond}.
+Traditional HPC compute clusters are created by combining separate compute servers over network fabric devices to form the cluster.  Each individual compute server is statically provisioned with its own CPUs, memory devices, accelerator cards, and storage devices to accomodate as many different application runtime requirements as possible\cite{beowulf}. This need to incorporate 'all of the options' often results in resource overprovisioning, makes traditional HPC architectures less flexible and more inefficient, and can lead to situations where application jobs are more prone to run-time failure. This paper targets HPC infrastructure, however it is worthy of noting that resources overprovisioning and inefficient use of hardware are common issues to any large scale computing facility \cite{borg-google, pond}.
 
-For example, design considerations that lead to an under-estimation of compute server memory resources can cause out-of-memory conditions.  In another example, IO server memory oversubscription can result in filesystem failure can occur due to virtual memory page swap thrashing, and eventually application failure when the dynamic addition of memory would be able to help mitigate this problem.  
+For example, design considerations that lead to an under-estimation of compute server memory resources can cause out-of-memory conditions. In another example, IO server memory oversubscription can result in filesystem failure and can occur due to virtual memory page swap thrashing, and lead to eventually application failure when the dynamic addition of memory would be able to help mitigate this problem.  
 
 Another issue with the architectural inflexibility of current, siloed, HPC architecture is that it frequently results in overprovisioned or stranded resources. Stranded resources are those that are either are on a compute server that, due to a lack of other resources (e.g., CPU), is unavailable to a workload, or that have been assigned to a workload that isn't making use of them and are unavailable to be used by other workloads. Overprovisioned resources are those that are either underused, or unused and idle for the current workloads but still draw energy and cooling. Energy wasted in data centers is becoming an increasingly important issue\cite{eere}.
 
@@ -11,16 +11,16 @@ The facility costs of large scale HPC systems including cooling and energy usage
 A solution to addressing the overprovisioning and computational efficiency limitations, as well as hardware and operating costs, of integrated, siloed, systems is the use of Composable Disaggregated Infrastructures (Figure \ref{fig:stranded}).
 
 \begin{figure}
-\centerline{\includegraphics[width=\columnwidth]{Slide3.jpeg}}
+\centerline{\includegraphics[width=.8\columnwidth]{use.pdf}}
 \caption{More Efficiency in Composable HPC Use of Resources.} 
 \label{fig:stranded}
 \end{figure}
 
-With Composable Disaggregated Infrastructures, computational resources are not statically provisioned in servers, but instead are physically disaggregated and connected through high-speed/low-latency network fabrics.  These resources can be dynamically provisioned and re-provisioned to client applications, as needed and are thus not only more efficient to manage by removing unnecessary hardware, but help reduce energy consumption and datacenter cooling costs.In this type of architecture, resources are grouped in shared 'pools' that are accessed across high-speed, low latency fabrics (Figure \ref{fig:Pools}). 
+With Composable Disaggregated Infrastructures, computational resources are not statically provisioned in servers, but instead are physically disaggregated and connected through high-speed/low-latency network fabrics.  These resources can be dynamically provisioned and re-provisioned to client applications, as needed and are thus not only more efficient to manage by removing unnecessary hardware, but help reduce energy consumption and datacenter cooling costs. In this type of architecture, resources are grouped in shared 'pools' that are accessed across high-speed, low latency fabrics (Figure \ref{fig:Pools}). 
 
 
 \begin{figure}
-\centerline{\includegraphics[width=\columnwidth]{pools2.jpeg}}
+\centerline{\includegraphics[width=\columnwidth]{pools.pdf}}
 \caption{Localized Disaggregated Resource Pools Connected by Fabrics.} 
 \label{fig:Pools}
 \end{figure}
